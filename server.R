@@ -3,7 +3,7 @@ library(dplyr)
 library(magrittr)
 
 server <- function(input, output){
-  output$allplayers <- renderDataTable({
-    allData
-  })
+  output$maintable <- renderDataTable(expr = {
+      allData <- allData %>% filter(year >= input$year[1], year <= input$year[2])
+    })
 }

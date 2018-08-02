@@ -46,8 +46,10 @@ perMode <- list("Per Game","Total","Per 36 minutes")
 
 # Collecting the data
 allData <- fetchData()
+allData <- allData %>% mutate(year=2017)
 fetchSeson <- seasons[1:7]
 for(season in fetchSeson){
   current <- fetchData(season = season)
+  current <- current %>% mutate(year = as.numeric(str_extract(seasons[[1]],'[0-9]{4}')))
   allData <- rbind(allData,current)
 }
