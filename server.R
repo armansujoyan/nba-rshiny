@@ -2,6 +2,7 @@ library(shiny)
 library(dplyr)
 library(magrittr)
 library(ggplot2)
+library(tidyr)
 
 server <- function(input, output){
   output$maintable <- renderDataTable(expr = {
@@ -14,10 +15,18 @@ server <- function(input, output){
       }
       allData
     })
-  
   output$comparison <- renderPlot({
     players <- allData  %>% filter(PLAYER %in% c(input$player1,input$player2))
-    plot <- ggplot(data = players) + geom_bar(aes(x=PLAYER,y=GP),position="dodge",stat="identity")
+    plot <- ggplot(data = players) + geom_bar(aes(x=PLAYER,y=players[,input$compVar]),position="dodge",stat="identity") +
+      labs(title = paste(input$player1,' vs ',input$player2,' in ', input$compVar), x = 'Players',
+           y = input$compVar) +
+      theme(axis.title.x = element_text(size = 20, color= 'black', face= 'bold'),
+            axis.title.y = element_text(size = 20, color= 'black', face= 'bold'),
+            axis.text.x = element_text(size = 10, color = 'black', face = 'bold'),
+            axis.text.y = element_text(size = 10, color = 'black', face = 'bold'),
+            plot.title = element_text(size = 20, color= 'black', face= 'bold'),
+            legend.title= element_text(size = 10, color= 'black', face= 'bold'),
+            legend.text = element_text(size = 10))
     print(plot)
   })
 }

@@ -38,8 +38,12 @@ body <- dashboardBody(
                                       choices = allData$PLAYER,
                                       selected = 1))
                ),
-             plotOutput('comparison')),
-    tabPanel("Individual")
+                fluidRow(
+                  column(12,selectInput('compVar', label = h3('Feature to compare'),
+                                        choices = colnames(allData[,5:24])),
+                                         multiple = TRUE)
+                ),
+             plotOutput('comparison'))
   )
 )
 
