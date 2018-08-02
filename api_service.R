@@ -44,6 +44,10 @@ for(i in c(0:7)){
 seasonType <- list("Regular Season","Playoffs","All Star")
 perMode <- list("Per Game","Total","Per 36 minutes")
 
-current_data <- fetchData()
-current_data <- as.data.frame(current_data)
-
+# Collecting the data
+allData <- fetchData()
+fetchSeson <- seasons[1:7]
+for(season in fetchSeson){
+  current <- fetchData(season = season)
+  allData <- rbind(allData,current)
+}
