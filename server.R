@@ -1,6 +1,7 @@
 library(shiny)
 library(dplyr)
 library(magrittr)
+library(ggplot2)
 
 server <- function(input, output){
   output$maintable <- renderDataTable(expr = {
@@ -13,4 +14,11 @@ server <- function(input, output){
       }
       allData
     })
+  
+  output$comparison <- renderPlot({
+    players <- allData  %>% filter(PLAYER %in% c(input$player1,input$player2))
+    plot <- ggplot(data = players) + geom_bar(aes(x=PLAYER,y=GP),position="dodge",stat="identity")
+    print(plot)
+  })
 }
+

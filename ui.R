@@ -29,7 +29,16 @@ body <- dashboardBody(
   tabsetPanel(
     type = "tabs",
     tabPanel("Table statistics", dataTableOutput("maintable")),
-    tabPanel("Player vs Player"),
+    tabPanel("Player vs Player", 
+             fluidRow(
+                 column(6,selectInput("player1", label = h3("Player 1"), 
+                                        choices = allData$PLAYER,
+                                        selected = 1)),
+                 column(6,selectInput("player2", label = h3("Player 2"), 
+                                      choices = allData$PLAYER,
+                                      selected = 1))
+               ),
+             plotOutput('comparison')),
     tabPanel("Individual")
   )
 )
