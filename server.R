@@ -8,5 +8,9 @@ server <- function(input, output){
                                     GP >= input$gamesplayed[1], GP <= input$gamesplayed[2],
                                     PTS >= input$points[1], PTS <= input$points[2],
                                     EFF >= input$eff[1], year <= input$eff[2])
+      if(input$team != 'All teams'){
+        allData <- allData %>% filter(TEAM == input$team)
+      }
+      allData
     })
 }

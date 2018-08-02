@@ -3,6 +3,9 @@ library(shinydashboard)
 
 sidebar <- dashboardSidebar(
   sidebarMenu(
+    selectInput("team", label = h3("Team"), 
+                choices = c('All teams',unique(allData$TEAM)), 
+                selected = 1),
     sliderInput(inputId = "year", 
                 label = "Years", 
                 min = 2000, max = 2017, 
