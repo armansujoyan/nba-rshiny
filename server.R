@@ -4,6 +4,8 @@ library(magrittr)
 library(ggplot2)
 library(tidyr)
 
+allData <- read.csv('nbadata,csv', stringsAsFactors = F)
+
 server <- function(input, output){
   output$maintable <- renderDataTable(expr = {
       allData <- allData %>% filter(year >= input$year[1], year <= input$year[2],

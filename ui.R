@@ -26,6 +26,7 @@ sidebar <- dashboardSidebar(
 )
 
 body <- dashboardBody(
+  includeCSS('styles.css'),
   tabsetPanel(
     type = "tabs",
     tabPanel("Table statistics", dataTableOutput("maintable")),
