@@ -1,10 +1,11 @@
+# Link to the Shiny App https://armansujoyan.shinyapps.io/nba_analysis/
 library(shiny)
 library(dplyr)
 library(magrittr)
 library(ggplot2)
 library(tidyr)
 
-allData <- read.csv('nbadata,csv', stringsAsFactors = F)
+allData <- read.csv('nbadata.csv', stringsAsFactors = F)
 
 server <- function(input, output){
   output$maintable <- renderDataTable(expr = {

@@ -57,4 +57,4 @@ for(season in fetchSeson){
 allData <- data.frame(lapply(allData, as.character), stringsAsFactors=FALSE)
 allData <- allData %>% mutate(MIN = as.numeric(MIN), GP = as.numeric(GP), PTS = as.numeric(PTS),
                               EFF = as.numeric(EFF))
-write.csv(file = 'nbadata.csv', x = allData)
+write.csv(allData,'nbadata.csv')
