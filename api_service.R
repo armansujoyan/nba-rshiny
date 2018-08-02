@@ -53,3 +53,7 @@ for(season in fetchSeson){
   current <- current %>% mutate(year = as.numeric(str_extract(seasons[[1]],'[0-9]{4}')))
   allData <- rbind(allData,current)
 }
+
+allData <- data.frame(lapply(allData, as.character), stringsAsFactors=FALSE)
+allData <- allData %>% mutate(MIN = as.numeric(MIN), GP = as.numeric(GP), PTS = as.numeric(PTS),
+                              EFF = as.numeric(EFF))
